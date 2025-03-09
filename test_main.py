@@ -21,7 +21,7 @@ def test_successful_download_and_upload(mocker):
     expected_calls = [
         call.upload_file(
             f"/tmp/pagina-{i}-2024-01-01.html",
-            "landing-casas-2423",
+            "landing-casas-mitula",
             f"pagina-{i}-2024-01-01.html"
         ) for i in range(1, 11)
     ]
@@ -29,7 +29,7 @@ def test_successful_download_and_upload(mocker):
     for i in range(1, 11):
         s3_instance.upload_file.assert_any_call(
             f"/tmp/pagina-{i}-2024-01-01.html",
-            "landing-casas-2423",
+            "landing-casas-mitula",
             f"pagina-{i}-2024-01-01.html"
         )
 
@@ -64,13 +64,13 @@ def test_s3_object_naming(mocker):
 
     s3_client.upload_file.assert_any_call(
         "/tmp/pagina-1-2023-12-31.html",
-        "landing-casas-2423",
+        "landing-casas-mitula",
         "pagina-1-2023-12-31.html"
     )
     
     expected_call = call.upload_file(
         "/tmp/pagina-1-2023-12-31.html",
-        "landing-casas-2423",
+        "landing-casas-mitula",
         "pagina-1-2023-12-31.html"
     )
     
