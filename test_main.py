@@ -1,7 +1,7 @@
 import pytest
 from unittest.mock import Mock, call
 import datetime
-from main import descargar_y_subir
+from Lambda import download_pages
 
 def test_successful_download_and_upload(mocker):
     """Prueba que se descarguen y suban correctamente 10 páginas"""
@@ -15,7 +15,7 @@ def test_successful_download_and_upload(mocker):
     mock_datetime = mocker.patch('datetime.datetime')
     mock_datetime.now.return_value.strftime.return_value = "2024-01-01"
     
-    descargar_y_subir()
+    download_pages()
     
     s3_instance = mock_s3.return_value
     expected_calls = [
@@ -42,7 +42,7 @@ def test_handle_failed_request(mocker):
     mocker.patch('requests.get', return_value=mock_response)
     mock_s3 = mocker.patch('boto3.client')
     
-    descargar_y_subir()
+    download_pages()
 
     mock_s3.return_value.upload_file.assert_not_called()
 
@@ -58,7 +58,7 @@ def test_s3_object_naming(mocker):
     mock_datetime = mocker.patch('datetime.datetime')
     mock_datetime.now.return_value.strftime.return_value = "2023-12-31"
     
-    descargar_y_subir()
+    download_pages()
 
     s3_client = mock_s3.return_value
 
