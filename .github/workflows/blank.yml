@@ -44,7 +44,7 @@ jobs:
       - name: Revision de codigo
         run: |
           source env/bin/activate
-          flake8 --max-line-lenght-100 Lambda.py procesar.py test_main.py
+          flake8 --max-line-length-100 Lambda.py procesar.py test_main.py
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
